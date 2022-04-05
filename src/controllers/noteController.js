@@ -2,7 +2,10 @@ import noteModel from "../models/noteModel.js";
 
 async function getNotes(req, res, next) {
   try {
-    const notes = await noteModel.getNotes();
+    let notes = await noteModel.getNotes();
+    if (req.query.userId) {
+      notes = notes.filter((note) => note.userId === req.query.userId);
+    }
     res.send(notes);
   } catch (err) {
     next(err);
