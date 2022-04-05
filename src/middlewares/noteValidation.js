@@ -1,7 +1,9 @@
 import Ajv from "ajv";
+import addFormats from "ajv-formats";
 import noteSchema from "../data/noteSchema.js";
 
 const ajv = new Ajv();
+addFormats(ajv);
 const validate = ajv.compile(noteSchema);
 
 function noteValidation(req, res, next) {
