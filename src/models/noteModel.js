@@ -6,4 +6,12 @@ async function getNotes() {
   return JSON.parse(response);
 }
 
-export default { getNotes };
+async function addNote(newNote) {
+  const notes = await getNotes();
+  newNote.id = nanoid(7);
+  notes.push(newNote);
+  await fs.promises.writeFile("src/data/notes.json", JSON.stringify(notes));
+  return newNote;
+}
+
+export default { getNotes, addNote };

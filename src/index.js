@@ -4,6 +4,8 @@ import noteRoutes from "./routes/noteRoutes.js";
 
 const app = new express();
 
+app.use(express.json());
+
 app.use("/notes", noteRoutes);
 
 app.listen(process.env.PORT, () => {
