@@ -5,8 +5,9 @@ const noteSchema = {
     text: { type: "string" },
     date: { type: "string" },
     title: { type: "string" },
+    userId: { type: "string" },
   },
-  required: ["text", "date"],
+  required: ["text", "date", "userId"],
   additionalProperties: false,
 };
 
