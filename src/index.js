@@ -2,10 +2,12 @@ import express from "express";
 import "dotenv/config";
 import noteRoutes from "./routes/noteRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import logRoute from "./middlewares/logRoute.js";
 
 const app = new express();
 
 app.use(express.json());
+app.use(logRoute);
 
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);
