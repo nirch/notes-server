@@ -1,11 +1,10 @@
 import express from "express";
 import "dotenv/config";
+import noteRoutes from "./routes/noteRoutes.js";
 
 const app = new express();
 
-app.get("/", (req, res) => {
-  res.send("test");
-});
+app.use("/notes", noteRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Notes app listening on port ${process.env.PORT}...`);
