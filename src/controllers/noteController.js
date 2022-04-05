@@ -1,7 +1,12 @@
 import noteModel from "../models/noteModel.js";
 
-function getNotes(req, res) {
-  res.send("get notes");
+async function getNotes(req, res) {
+  try {
+    const notes = await noteModel.getNotes();
+    res.send(notes);
+  } catch (err) {
+    next(err);
+  }
 }
 
 function addNote(req, res) {

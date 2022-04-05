@@ -1,4 +1,9 @@
 import fs from "fs";
 import { nanoid } from "nanoid";
 
-export default {};
+async function getNotes() {
+  const response = await fs.promises.readFile("src/data/notes.json");
+  return JSON.parse(response);
+}
+
+export default { getNotes };
