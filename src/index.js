@@ -1,14 +1,12 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
-import knex from "knex";
 import noteRoutes from "./routes/noteRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import logRoute from "./middlewares/logRoute.js";
-import knexConfig from "./data/knexfile.js";
+import db from "./data/db.js";
 
 const app = new express();
-const db = knex(knexConfig);
 
 app.use(cors());
 app.use(express.json());
