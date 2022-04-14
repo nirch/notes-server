@@ -1,17 +1,17 @@
 import fs from "fs";
-import { nanoid } from "nanoid";
+import db from "../data/db.js";
 
-async function getNotes() {
-  const response = await fs.promises.readFile("src/data/notes.json");
-  return JSON.parse(response);
+async function getNotes(userId) {
+  const notes = userId
+    ? await db.from("notes").where({ userId })
+    : await db.from("notes");
+  return notes;
 }
 
 async function addNote(newNote) {
-  const notes = await getNotes();
-  newNote.id = nanoid(7);
-  notes.push(newNote);
-  await fs.promises.writeFile("src/data/notes.json", JSON.stringify(notes));
-  return newNote;
+  const [newNoteId] = await db.from("notes").insert(newNote);
+  const [noteAdded] = await db.from("notes").where({ id: newNoteId });
+  return noteAdded;
 }
 
 export default { getNotes, addNote };
