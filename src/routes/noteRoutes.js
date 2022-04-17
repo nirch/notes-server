@@ -8,6 +8,6 @@ const router = express.Router();
 router
   .route("/")
   .get(authenticated, noteController.getNotes)
-  .post(noteValidation, noteController.addNote);
+  .post(authenticated, noteValidation, noteController.addNote);
 
 export default router;
