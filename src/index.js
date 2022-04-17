@@ -5,11 +5,13 @@ import noteRoutes from "./routes/noteRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import logRoute from "./middlewares/logRoute.js";
 import db from "./data/db.js";
+import cookieParser from "cookie-parser";
 
 const app = new express();
 
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(logRoute);
 
 app.use("/notes", noteRoutes);

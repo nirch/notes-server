@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 
 function authenticated(req, res, next) {
   try {
-    const token = req.headers.authorization.replace("Bearer ", "");
+    // const token = req.headers.authorization.replace("Bearer ", "");
+    const token = req.cookies.token;
     const authenticatedUser = jwt.verify(token, process.env.JWT_SECRET);
     req.user = authenticatedUser;
     next();

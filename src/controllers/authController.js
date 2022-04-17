@@ -15,7 +15,8 @@ async function login(req, res, next) {
     }
     delete user.password;
     const token = jwt.sign(Object.assign({}, user), process.env.JWT_SECRET);
-    res.send({ user, token });
+    res.cookie("token", token, { httpOnly: true });
+    res.send(user);
   } catch (err) {
     next(err);
   }
