@@ -1,4 +1,5 @@
 import authModel from "../models/authModel.js";
+import jwt from "jsonwebtoken";
 
 async function login(req, res, next) {
   try {
@@ -10,9 +11,11 @@ async function login(req, res, next) {
     const user = await authModel.login(req.body.username, req.body.password);
     if (!user) {
       res.status(401).send("invalid username or password");
+      return;
     }
     delete user.password;
-    res.send(user);
+    const token = jwt.sign(Object.assign({}, user), process.env.JWT_SECRET);
+    res.send({ user, token });
   } catch (err) {
     next(err);
   }
