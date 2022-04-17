@@ -11,6 +11,7 @@ async function login(req, res, next) {
     if (!user) {
       res.status(401).send("invalid username or password");
     }
+    delete user.password;
     res.send(user);
   } catch (err) {
     next(err);

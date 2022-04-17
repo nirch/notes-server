@@ -1,16 +1,14 @@
 import fs from "fs";
-
-async function readUsers() {
-  const response = await fs.promises.readFile("src/data/users.json");
-  return JSON.parse(response);
-}
+import db from "../data/db.js";
+import bcrypt from "bcrypt";
 
 async function login(username, password) {
-  const users = await readUsers();
-  const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
-  return user;
+  const user = await db("users").where({ username }).first();
+  if (user && (await bcrypt.compare(password, user.password))) {
+    return user;
+  } else {
+    return false;
+  }
 }
 
 export default { login };
