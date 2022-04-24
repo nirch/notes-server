@@ -7,7 +7,7 @@ const noteSchema = {
     title: { type: "string" },
     userId: { type: "integer" },
   },
-  required: ["text", "userId"],
+  required: ["text"],
   additionalProperties: false,
 };
 
