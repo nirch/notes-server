@@ -13,6 +13,10 @@ app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(logRoute);
+app.use(
+  `/${process.env.UPLOAD_FOLDER}`,
+  express.static(process.env.UPLOAD_FOLDER)
+);
 
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);

@@ -13,6 +13,7 @@ async function addNote(req, res, next) {
   try {
     const newNote = await noteModel.addNote({
       ...req.body,
+      image_url: req.file ? process.env.HOST + "/" + req.file.path : null,
       userId: req.user.id,
     });
     res.send(newNote);
