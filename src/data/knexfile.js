@@ -6,11 +6,7 @@ const pathToMigrations = path.resolve(__dirname, "../migrations");
 
 const knexConfig = {
   client: "mysql",
-  connection: {
-    database: "notesapp",
-    user: "root",
-    password: "mysqlserver",
-  },
+  connection: process.env.DB_CONNECTION_STRING,
   pool: {
     min: 2,
     max: 10,
