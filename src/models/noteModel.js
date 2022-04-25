@@ -1,4 +1,3 @@
-import fs from "fs";
 import db from "../data/db.js";
 
 async function getNotes(userId) {
