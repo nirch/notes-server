@@ -11,7 +11,9 @@ const app = new express();
 
 console.log("hi from console");
 console.log(process.env.NODE_ENV);
-console.log(process.env.LOG_LEVEL);
+console.log(process.env.TEST_VAR);
+console.log(process.env.FOO);
+console.log(process.env.BLA);
 
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
