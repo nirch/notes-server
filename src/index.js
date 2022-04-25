@@ -17,7 +17,7 @@ console.log(process.env.BLA);
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://notes-web-itc.herokuapp.com"],
+    origin: ["http://localhost:3000", "https://notes-web-itc.herokuapp.com"],
     credentials: true,
   })
 );
