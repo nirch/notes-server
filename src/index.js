@@ -3,16 +3,16 @@ import "dotenv/config";
 import cors from "cors";
 import noteRoutes from "./routes/noteRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import logRoute from "./middlewares/logRoute.js";
 import db from "./data/db.js";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
 
 const app = new express();
 
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(logRoute);
+app.use(morgan(process.env.LOG_LEVEL));
 app.use(
   `/${process.env.UPLOAD_FOLDER}`,
   express.static(process.env.UPLOAD_FOLDER)
