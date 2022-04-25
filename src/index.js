@@ -15,7 +15,12 @@ console.log(process.env.TEST_VAR);
 console.log(process.env.FOO);
 console.log(process.env.BLA);
 
-app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://notes-web-itc.herokuapp.com"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan(process.env.LOG_LEVEL));
