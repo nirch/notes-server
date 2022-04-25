@@ -9,6 +9,10 @@ import morgan from "morgan";
 
 const app = new express();
 
+console.log("hi from console");
+console.log(process.env.NODE_ENV);
+console.log(process.env.LOG_LEVEL);
+
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
