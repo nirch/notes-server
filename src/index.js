@@ -21,6 +21,10 @@ app.use(
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);
 
+app.get("/test", (req, res) => {
+  res.send("hello world!");
+});
+
 db.migrate
   .latest()
   .then((migration) => {
