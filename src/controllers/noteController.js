@@ -15,7 +15,7 @@ async function addNote(req, res, next) {
   try {
     const uploadResult =
       req.file && (await cloudinary.uploader.upload(req.file.path));
-    req.file && uploadResult && fs.unlink(req.file.path);
+    req.file && uploadResult && fs.promises.unlink(req.file.path);
     const newNote = await noteModel.addNote({
       ...req.body,
       image_url: uploadResult ? uploadResult.url : null,
